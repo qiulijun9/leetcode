@@ -18,3 +18,18 @@ var addBinary = function(a, b) {
   if (!c[0]) c.shift();
   return c.join("");
 };
+// for (let i = 0; i < 3; i++) {
+//   setTimeout(function() {
+//     console.log(i);
+//   }, 1000);
+// }
+
+function a() {
+  var a = 333;
+}
+console.log(a);
+
+function b() {
+  let b = 333;
+}
+console.log(b);

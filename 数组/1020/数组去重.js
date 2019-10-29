@@ -1,26 +1,16 @@
 /**
  * @param {number[]} nums
- * @return {boolean}
+ * @return {number}
  */
-var containsDuplicate = function(nums) {
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = 0; j < i; j++) {
-      if (nums[j] == nums[i]) return true;
+var removeDuplicates = function(nums) {
+  let cur = nums[0];
+
+  for (let i = 1; i < nums.length; ) {
+    if (nums[i] === cur) {
+      nums.splice(i, 1);
+    } else {
+      cur = nums[i++];
     }
   }
-  return false;
+  return nums.length;
 };
-
-var containsDuplicate2 = function(nums) {
-  const hashMap = {};
-  return nums.some(num => {
-    if (hashMap[num]) {
-      return true;
-    } else {
-      hashMap[num] = true;
-      return false;
-    }
-  });
-};
-
-containsDuplicate2([2, 34, 54, 54, 3, 2, 3]);

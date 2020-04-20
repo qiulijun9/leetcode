@@ -15,7 +15,7 @@ var maxPathSum = function(root) {
   let maxSum = 0;
   maxSum = root.val;
   getMaxSum(root);
-
+   //通过二叉树中序遍历
     function getMaxSum(node){
      if(node  ===  null ){ return 0};
      let leftNode = Math.max(0,getMaxSum(node.left));

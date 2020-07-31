@@ -42,18 +42,44 @@ https://leetcode-cn.com/problems/valid-parentheses
 // };
 
 function isValid(s) {
-	let map = { '(': ')', '[': ']', '{': '}' };
-	let arr = [];
-	for (let i = 0; i < s.length; i++) {
-		if (map[s[i]]) {
-			arr.push(s[i]);
-		} else {
-			if (s[i] !== map[arr.pop()]) {
-				return false;
-			}
-		}
-	}
-	return arr.length >= 1 ? false : true;
+  let map = { '(': ')', '[': ']', '{': '}' }
+  let arr = []
+  for (let i = 0; i < s.length; i++) {
+    if (map[s[i]]) {
+      arr.push(s[i])
+    } else {
+      if (s[i] !== map[arr.pop()]) {
+        return false
+      }
+    }
+  }
+  return arr.length >= 1 ? false : true
 }
 
-console.log(isValid('()'));
+console.log(isValid('()'))
+
+/**
+ * 7.30
+ * @param {string} s
+ * @return {boolean}
+ * 时间复杂度:O(1)* n =O(n)
+ * 空间复杂度:O(n)
+ */
+var isValid2 = function (s) {
+  const map = { ')': '(', ']': '[', '}': '{' }
+  let stack = []
+  for (let i = 0; i < s.length; i++) {
+    if (!map[s[i]]) {
+      //不是右括号是左括号压栈
+      stack.push(s[i])
+    } else {
+      //栈有元素,且栈底的元素是否和右括号匹配 ]:[  [ === [
+      if (map[s[i]] !== stack.pop()) {
+        return false
+      }
+    }
+  }
+  return stack.length === 0 ? true : false
+}
+
+console.log(isValid2('((()))]'))

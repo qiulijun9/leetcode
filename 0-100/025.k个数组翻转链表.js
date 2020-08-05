@@ -52,5 +52,3 @@ var reverseKGroup = function (head, k) {
   }
   return hair.next
 }
-
-console.log(reverseKGroup([1, 2, 3, 4, 5], 3))

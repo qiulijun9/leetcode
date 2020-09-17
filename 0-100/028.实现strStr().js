@@ -76,6 +76,24 @@ var strStr = function (haystack, needle) {
   }
 }
 
+var strStr = function (haystack, needle) {
+  for (let i = 0; i < haystack.length; i++) {
+    let flag = false
+    if (haystack[i] === needle[0]) {
+      flag = true
+      for (let j = 0; j < needle.length; j++) {
+        if (haystack[i + j] !== needle[j]) {
+          flag = false
+          break
+        }
+      }
+      if (flag) {
+        return i
+      }
+    }
+  }
+  return -1
+}
 console.log(strStr('hello', 'll'))
 console.log(strStr('aaa', 'aaa'))
 console.log(strStr('aaa', 'a'))

@@ -35,9 +35,7 @@ var minDepth = function (root) {
       }
     }
 
-    if (queue.length) {
-      deep++
-    }
+    deep++
   }
   return deep
 }

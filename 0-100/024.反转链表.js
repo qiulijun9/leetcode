@@ -29,3 +29,30 @@ var reverseList = function (head) {
 //   }
 //   return pre
 // }
+
+// 1--》2 --》3 --》4 --》5
+
+// // 递归
+// head.next 2
+
+// 1<--2 <-- 3--》4 --》5
+
+// head.next 3
+// 1<-- 2 <-- 3 <-- 4 --》5
+
+// head.next 4
+// 1<--2 <-- 3 <-- 4 <--5
+
+// 如果要反转3 ---4m =3, n=4
+// head 之向n的前面一个 m-1
+
+var reverseList = function (head) {
+  if (head === null || head.next === null) {
+    return head
+  }
+
+  const last = reverseList(head.next)
+  head.next.next = head
+  head.next = null
+  return last
+}

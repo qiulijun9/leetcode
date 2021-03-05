@@ -52,3 +52,33 @@ var reverseKGroup = function (head, k) {
   }
   return hair.next
 }
+
+//  首先是反转链表
+function reverseList(head) {
+  let current = head
+  let pre = null
+
+  while (current !== null) {
+    const temp = current.next
+    current.next = pre
+    pre = current
+    current = temp
+  }
+  return pre
+}
+
+// 再反转区间的链表  只需要结束条件改成 b
+function reserver(a, b) {
+  let pre = null
+  let current = head
+
+  while (current !== b) {
+    const next = current.next
+    current.next = pre
+    pre = current
+    current = next
+  }
+  return pre
+}
+
+function reverseKGroup(head, k) {}

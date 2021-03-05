@@ -64,13 +64,14 @@ function reverseList(head) {
     pre = current
     current = temp
   }
+
   return pre
 }
 
 // 再反转区间的链表  只需要结束条件改成 b
 function reserver(a, b) {
   let pre = null
-  let current = head
+  let current = a
 
   while (current !== b) {
     const next = current.next
@@ -78,7 +79,30 @@ function reserver(a, b) {
     pre = current
     current = next
   }
+  // 反转后的链表
   return pre
 }
 
-function reverseKGroup(head, k) {}
+function reverseKGroup(head, k) {
+  if (head === null) {
+    return null
+  }
+  // 拆分成反转 head 和 剩余数组的子问题
+
+  let a = head
+  let b = head
+
+  for (let i = 0; i < k; i++) {
+    if (b === null) {
+      return head
+    }
+    // 让b 指向k 之后的那个链表
+    b = b.next
+  }
+
+  let newHead = reserver(a, b)
+  // 再让已经反转的和后面的链表连起来
+  a.next = reverseKGroup(b, k)
+
+  return newHead
+}

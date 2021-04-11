@@ -7,18 +7,34 @@ function slidingWindow(s, t) {
   }
   let left = 0
   let right = 0
+  let count = 0
 
   while (right < s.length) {
     // 增加滑动窗口
     // 即将移入窗口的字符
     const c = s[right]
-    right ++
+    right++
+
+    if (needs[c]) {
+      window[c] ? window[c]++ : (window[c] = 1)
+      if (needs[c] === window[c]) {
+        count++
+      }
+    }
 
     while(window needs shrink){
       // 缩小滑动窗口
       // 即将移出窗口的字符
+      // ...
      const d  = s[left]
       left++
+
+      if (needs[d]) {
+        if (window[d] === needs[d]) {
+          count--
+        }
+        window[d]--
+      }
     }
   }
 

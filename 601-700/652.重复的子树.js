@@ -40,3 +40,33 @@ var findDuplicateSubtrees = function (root) {
   traverse(root)
   return result
 }
+
+//解题思路 ，确定以自己为根的 序列化
+// 在对比其他的树的序列化 ，看是否有相同的，
+// 要过滤掉数组中的重复值
+
+var findDuplicateSubtrees = function (root) {
+  const result = []
+  const memo = {}
+  function traverse(root) {
+    if (root === null) {
+      return '#'
+    }
+    const left = traverse(root.left)
+    const right = traverse(root.right)
+    const str = `${left},${right},${root.val}`
+
+    if (memo[str]) {
+      memo[str] += 1
+    } else {
+      memo[str] = 1
+    }
+    if (memo[str] === 2) {
+      result.push(root)
+    }
+    return str
+  }
+
+  traverse(root)
+  return result
+}

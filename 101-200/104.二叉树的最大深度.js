@@ -60,3 +60,41 @@ var maxDepth = function (root) {
 
   return Math.max(leftMax, rightMax) + 1
 }
+
+var maxDepth = function (root) {
+  if (root === null) {
+    return 0
+  }
+  const leftDepth = maxDepth(root.left)
+  const rightDepth = maxDepth(root.right)
+
+  return Math.max(leftDepth, rightDepth) + 1
+}
+
+var maxDepth = function (root) {
+  const queue = []
+  queue.push(root)
+  let result = 0
+  if (root === null) {
+    return 0
+  }
+
+  while (queue.length) {
+    const leverSize = queue.length
+
+    for (let i = 0; i < leverSize; i++) {
+      const currentNode = queue.shift()
+
+      if (currentNode.left !== null) {
+        queue.push(currentNode.left)
+      }
+
+      if (currentNode.right !== null) {
+        queue.push(currentNode.right)
+      }
+    }
+    result++
+  }
+
+  return result
+}

@@ -54,3 +54,50 @@ function build(preorder, preStart, preEnd, inorder, inoStart, inoEnd) {
 
   return root
 }
+
+var buildTree = function (preorder, inorder) {
+  return helper(
+    preorder,
+    0,
+    preorder.length - 1,
+    inorder,
+    0,
+    inorder.length - 1,
+  )
+}
+
+function helper(preorder, preStart, preEnd, inorder, inStart, inEnd) {
+  const rootNode = preorder[preStart]
+  let index = 1
+
+  if (preEnd < preStart) {
+    return null
+  }
+  for (let i = inStart; i <= inEnd; i++) {
+    if (inorder[i] === rootNode) {
+      index = i
+    }
+  }
+
+  const root = new TreeNode(rootNode)
+  const leftSize = index - inStart
+
+  root.left = helper(
+    preorder,
+    preStart + 1,
+    preStart + leftSize,
+    inorder,
+    inStart,
+    index - 1,
+  )
+  root.right = helper(
+    preorder,
+    preStart + leftSize + 1,
+    preEnd,
+    inorder,
+    index + 1,
+    preEnd,
+  )
+
+  return root
+}

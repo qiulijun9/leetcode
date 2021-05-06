@@ -185,3 +185,38 @@ var deserialize = function (data) {
   }
   return root
 }
+
+var serialize = function (root) {
+  let result = []
+  traverse(root, result)
+  return result.join('')
+}
+
+function traverse(root, result) {
+  if (root === null) {
+    result.push('#')
+    return
+  }
+  result.push(root.val)
+
+  traverse(root.left, result)
+  traverse(root.right, result)
+}
+
+var deserialize = function (data) {
+  const arr = data.split(',')
+  return getRoot(arr)
+}
+
+function getRoot(arr) {
+  //前序遍历第一是根节点
+  const currentNode = arr.shift()
+  if (currentNode === '#') {
+    return null
+  }
+
+  const root = new TreeNode(currentNode)
+  root.left = getRoot(arr)
+  root.right = getRoot(arr)
+  return root
+}

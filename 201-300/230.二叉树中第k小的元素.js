@@ -33,25 +33,49 @@ var kthSmallest = function (root, k) {
 
   return result
 }
-// 有点不懂。。。
-var kthSmallest2 = function (root, k) {
-  let m = getNodeNumber(root.left)
 
+var kthSmallest3 = function (root, k) {
+  // 二叉搜索树 中序遍历是有序的， 要找到第k 小的元素，就是找数组的第 k 个值
+  const result = []
+
+  traverse(root, result)
+  return result[k - 1]
+}
+
+function traverse(root, result) {
+  if (root === null) {
+    return
+  }
+  traverse(root.left, result)
+
+  result.push(root.val)
+
+  traverse(root.right, result)
+}
+
+var kthSmallest = function (root, k) {
+  //  获取自己的排名
+  const m = computerRootSize(root.left)
+
+  console.log(m)
   if (m + 1 === k) {
     return root.val
   }
-  if (m >= k) {
+
+  // 有序数组  如果 k 小于当前 m 的排名 应该去左子树上查找
+  if (k < m + 1) {
     return kthSmallest(root.left, k)
   }
-
-  if (m < k) {
+  if (k > m + 1) {
     return kthSmallest(root.right, k - m - 1)
   }
 }
 
-function getNodeNumber(root) {
+// 计算以自己为根的这颗二叉树有多少个节点
+function computerRootSize(root) {
   if (root === null) {
     return 0
   }
-  return getNodeNumber(root.left) + getNodeNumber(root.right) + 1
+
+  return computerRootSize(root.left) + computerRootSize(root.right) + 1
 }

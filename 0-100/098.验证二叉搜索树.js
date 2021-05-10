@@ -99,3 +99,23 @@ function helper(root, min, max) {
 
   return helper(root.left, min, root.val) && helper(root.right, root.val, max)
 }
+
+var isValidBST = function (root) {
+  return helper(root, -Infinity, Infinity)
+}
+
+function helper(root, min, max) {
+  if (root === null) {
+    return true
+  }
+
+  // 二叉搜索树和自己的左孩子和右孩子做比较  每一个节点 root的左子树都小于根节点，root的右子树都大于根节点
+  if (min && root.val <= min.val) {
+    return false
+  }
+  if (max && root.val >= max.val) {
+    return false
+  }
+
+  return helper(root.left, min, root) && helper(root.right, root, max)
+}

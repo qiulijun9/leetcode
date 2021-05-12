@@ -32,3 +32,10 @@ var climbStairs = function (n) {
 
   return temp
 }
+
+console.log(climbStairs(6))
+
+function foo(a, b) {
+  console.log('a:' + a, 'b:' + b)
+}
+foo.apply(null, [2, 3])

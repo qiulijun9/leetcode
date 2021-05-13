@@ -13,10 +13,9 @@
  */
 var insertIntoBST = function (root, val) {
   if (root === null) {
-    // 插入节点
     return new TreeNode(val)
   }
-  // 查询节点
+
   if (root.val < val) {
     root.right = insertIntoBST(root.right, val)
   }

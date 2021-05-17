@@ -50,3 +50,39 @@ function getMinNode(root) {
   }
   return root
 }
+
+var deleteNode = function (root, key) {
+  if (root === null) {
+    return null
+  }
+
+  if (root.val === key) {
+    if (root.left === null) {
+      return root.right
+    }
+
+    if (root.right === null) {
+      return root.left
+    }
+
+    const minNode = getMinNode(root.right)
+    root.val = minNode.val
+    root.right = deleteNode(root.right, minNode.val)
+  }
+
+  if (root.val < key) {
+    root.right = deleteNode(root.right, key)
+  }
+
+  if (root.val > key) {
+    root.left = deleteNode(root.left, key)
+  }
+  return root
+}
+
+function getMinNode(root) {
+  while (root.left !== null) {
+    root = root.left
+  }
+  return root
+}

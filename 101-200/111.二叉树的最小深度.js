@@ -70,3 +70,22 @@ var minDepth = function (root) {
 
   return 1 + Math.min(minLeft, minRight)
 }
+
+var minDepth = function (root) {
+  if (root === null) {
+    return 0
+  }
+
+  if (root.left === null) {
+    return minDepth(root.right) + 1
+  }
+
+  if (root.right === null) {
+    return minDepth(root.left) + 1
+  }
+
+  const minLeftDepth = minDepth(root.left)
+  const maxRightDepth = minDepth(root.right)
+
+  return Math.min(minLeftDepth, maxRightDepth) + 1
+}

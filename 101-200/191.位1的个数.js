@@ -19,6 +19,5 @@ var hammingWeight2 = function (n) {
   let str = n.toString(2)
   const strSplit = str.split('1')
   return strSplit.length - 1
-  console.log(999, str, strSplit)
 }
 console.log(hammingWeight2(00000000000000000000000000001011))
